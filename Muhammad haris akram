@@ -1,0 +1,46 @@
+import React, { useState } from "react";
+
+const LoveProposal = () => {
+  const [noPosition, setNoPosition] = useState({ top: "50%", left: "60%" });
+  const [yesClicked, setYesClicked] = useState(false);
+
+  const moveNoButton = () => {
+    const randomX = Math.random() * (window.innerWidth - 100);
+    const randomY = Math.random() * (window.innerHeight - 50);
+    setNoPosition({ top: `${randomY}px`, left: `${randomX}px` });
+  };
+
+  const handleYesClick = () => {
+    setYesClicked(true);
+    alert("She clicked Yes!"); // Show message on the laptop screen
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-pink-200">
+      {!yesClicked ? (
+        <>
+          <h1 className="text-4xl font-bold text-red-600 mb-6">HUM DOST TW HAIN KIA AGY CHL KRR RELATION MEIN AYE TW TUMHE MASLA TW NH HOGA NA? 💖</h1>
+          <div className="relative">
+            <button
+              className="px-6 py-3 bg-green-500 text-white text-xl rounded-lg shadow-lg hover:bg-green-600"
+              onClick={handleYesClick}
+            >
+              Nh Hoga
+            </button>
+            <button
+              className="px-6 py-3 bg-red-500 text-white text-xl rounded-lg shadow-lg absolute"
+              style={{ top: noPosition.top, left: noPosition.left }}
+              onMouseEnter={moveNoButton}
+            >
+              Ho Ga
+            </button>
+          </div>
+        </>
+      ) : (
+        <h1 className="text-5xl font-bold text-green-600">Thank You! 💕</h1>
+      )}
+    </div>
+  );
+};
+
+export default LoveProposal;
